@@ -168,6 +168,7 @@ return {
 				pyright = {},
 				htmx = {},
 				jedi_language_server = {},
+				markdownlint = {},
 
 				-- pyright = {},
 				-- rust_analyzer = {},
