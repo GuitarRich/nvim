@@ -40,9 +40,26 @@ return {
 				},
 			})
 
-			vim.cmd("colorscheme rose-pine")
+			--vim.cmd("colorscheme rose-pine")
 
-			ColorMyPencils()
+			ColorMyPencils("oldworld")
 		end,
+	},
+	{
+		"guitarrich/vscode.nvim",
+		name = "vscode",
+		config = function()
+			require("vscode").setup({
+				italic_comments = true,
+				italic_keywords = true,
+			})
+		end,
+	},
+
+	{
+		"dgox16/oldworld.nvim",
+		name = "oldworld",
+		laxy = false,
+		priority = 1000,
 	},
 }
