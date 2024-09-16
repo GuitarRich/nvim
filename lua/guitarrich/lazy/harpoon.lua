@@ -9,12 +9,12 @@ return {
 		vim.keymap.set("n", "<leader>a", function()
 			harpoon:list():add()
 		end)
-		--        vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
 		-- Set <space>1..<space>5 be my shortcuts to moving to the files
 		for _, idx in ipairs({ 1, 2, 3, 4, 5 }) do
 			vim.keymap.set("n", string.format("<space>%d", idx), function()
 				harpoon:list():select(idx)
-			end)
+			end, { desc = "Move to harpoon file [" .. idx .. "]" })
 		end
 
 		-- Toggle previous & next buffers stored within Harpoon list
@@ -33,6 +33,18 @@ return {
 				table.insert(file_paths, item.value)
 			end
 
+			local make_finder = function()
+				local paths = {}
+
+				for _, item in ipairs(harpoon_files.items) do
+					table.insert(paths, item.value)
+				end
+
+				return require("telescope.finders").new_table({
+					results = paths,
+				})
+			end
+
 			require("telescope.pickers")
 				.new({}, {
 					prompt_title = "Harpoon",
@@ -41,6 +53,18 @@ return {
 					}),
 					previewer = conf.file_previewer({}),
 					sorter = conf.generic_sorter({}),
+					attach_mappings = function(prompt_bufnr, map)
+						map("i", "<c-d>", function()
+							local state = require("telescope.actions.state")
+							local selected_entry = state.get_selected_entry()
+							local current_picker = state.get_current_picker(prompt_bufnr)
+
+							harpoon:list():remove(selected_entry)
+							current_picker:refresh(make_finder())
+						end)
+
+						return true
+					end,
 				})
 				:find()
 		end

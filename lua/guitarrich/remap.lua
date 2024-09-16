@@ -21,3 +21,6 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>ee", "oif err != nil {<Cr>}<Esc>Oreturn err<Esc>")
+
+-- sort tailwind classes
+vim.keymap.set("n", "<leader>tw", "<cmd>TailwindSort<CR>")
