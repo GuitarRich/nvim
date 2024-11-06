@@ -1,6 +1,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
+	main = "nvim-treesitter.configs", -- Sets main module to use for opts
 	config = function()
 		require("nvim-treesitter.configs").setup({
 
@@ -8,16 +9,20 @@ return {
 
 			-- A list of parser names, or "all"
 			ensure_installed = {
+				"vim",
 				"vimdoc",
+				"diff",
 				"javascript",
 				"typescript",
 				"c",
 				"lua",
+				"luadoc",
 				"rust",
 				"jsdoc",
 				"bash",
 				"go",
 				"markdown",
+				"markdown_inline",
 				"html",
 				"templ",
 			},

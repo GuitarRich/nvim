@@ -24,3 +24,5 @@ vim.keymap.set("n", "<leader>ee", "oif err != nil {<Cr>}<Esc>Oreturn err<Esc>")
 
 -- sort tailwind classes
 vim.keymap.set("n", "<leader>tw", "<cmd>TailwindSort<CR>")
+
+vim.keymap.set("n", "<leader>dl", "<cmd>DarkLightSwitch<CR>", { desc = "Toggle [D]ark/[L]ight theme" })

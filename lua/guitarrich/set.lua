@@ -58,3 +58,6 @@ vim.opt.splitbelow = true
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
+
+-- Diagnostic keymaps
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
